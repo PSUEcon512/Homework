@@ -1,0 +1,95 @@
+\documentclass[10pt]{article} 
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\usepackage{geometry} 
+\geometry{verbose,marginparwidth=0.5in,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in} 
+\usepackage{lmodern}
+
+\usepackage{booktabs}
+
+\usepackage{enumitem}
+% \setlist{nosep}
+
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+\usepackage{comment}
+
+\usepackage{mathtools}
+\usepackage{bbm}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\bs}{\boldsymbol}
+
+
+\begin{document}
+
+
+\begin{center}
+\textbf{Econ 512}
+
+\emph{Fall 2018}\\[1em]
+
+Homework 5 -- Binary Choice MLE with Random Coefficients\\
+Due 11/28/2018 \\[3em]
+\end{center}
+
+
+Consider the following binary discrete choice model for panel data:
+\begin{equation*}
+Y_{it}=I\left( \beta _{i}X_{it}+\gamma Z_{it}+u_{i}+\epsilon _{it}>0\right) ,
+\end{equation*}
+where $X_{it}$ and $Z_{it}$ are scalar regressors for a group of $i=1,...,N$ individuals and $t=1,...,T$ time periods. $\ N=100$ and $T=20$. \ The coefficients $\beta _{i}$ and $u_{i}$ are person specific and are modeled as draws from a bivariate normal distribution:
+
+\begin{equation*}
+\begin{bmatrix}
+\beta _{i} \\ 
+u_{i}%
+\end{bmatrix}%
+\sim N(\mu ,\Sigma ),\quad \text{where}\quad \mu =%
+\begin{bmatrix}
+\beta _{0} \\ 
+u_{0}%
+\end{bmatrix}%
+,\quad \Sigma =%
+\begin{bmatrix}
+\sigma _{\beta } & \sigma _{\beta u} \\ 
+\sigma _{\beta u} & \sigma _{u}%
+\end{bmatrix}%
+.
+\end{equation*}
+
+Assume $\epsilon _{it}$ follows standard logistic distribution, i.e. $%
+F(\epsilon )=\left( 1+e^{-\epsilon }\right) ^{-1}$, and then a single
+contribution to the likelihood function from individual $i$ is
+
+\begin{equation*}
+L_{i}(\gamma \mid \beta _{i},u_{i})=\prod_{t=1}^{T}F(\beta _{i}X_{it}+\gamma
+Z_{it}+u_{i})^{Y_{it}}\left[ 1-F(\beta _{i}X_{it}+\gamma Z_{it}+u_{i})\right]
+^{1-Y_{it}}.
+\end{equation*}
+
+To construct the likelihood function for the data set of NT observations we
+have to integrate over the joint distribution of $(\beta _{i},u_{i})$. \ The
+likelihood function for the data set is: 
+\begin{equation*}
+L(\gamma ,\mu ,\Sigma )=\prod_{i=1}^{N}\int_{-\infty }^{\infty
+}\int_{-\infty }^{\infty }L_{i}(\gamma \mid \beta _{i},u_{i})\phi (\beta
+_{i},u_{i}\mid \mu ,\Sigma )\,\mathrm{d}\beta _{i}\,\mathrm{d}u_{i},
+\end{equation*}%
+where $\phi (\cdot \mid \mu ,\Sigma )$ is the joint density function of
+bivariate normal distribution $N(\mu ,\Sigma )$.  Of course, it will be numerically more convenient to work with the log-likelihood function. 
+The data set {\tt hw5.mat} contains 20 x 100 matrices of the variables $X,Z$, and $Y$.
+
+\begin{enumerate}
+	\item Assume $u_i=0\,\,\forall\,i$ (ie. take $u_i$ out of the model, so that $u_0=\sigma_u=\sigma_{u\beta}=0$). Use Gaussian Quadrature using 20 nodes to calculate the log-likelihood function when $\beta_0=0.1$, $\sigma_{\beta}=1$, and $\gamma=0$.
+	\item Now use Monte Carlo Methods using 100 nodes to calculate the log-likelihood function. 
+	\item Maximize (or minimize the negative) log-likelihood function with respect to the parameters using both integration techniques above. Use Matlab's fmincon without a supplied derivative to max (min) your objective function. 
+	\item Now allow $u_0\ne0$, so allow the parameters $\sigma_u$ and $\sigma_{\beta u}$ to be non-zero. Maximize the log-likelihood function, estimating all of the parameters, using Monte Carlo methods.
+	\item For each estimation, report the starting value, argmax, and maximized value of the log-likelihood function.
+\end{enumerate}
+
+\vspace{2em}
+(Hint: the matlab function ``chol'' may come in handy for simulating from the joint density.) 
+
+
+
+\end{document}

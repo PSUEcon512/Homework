@@ -1,0 +1,117 @@
+
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\geometry{left=1in,right=1in,top=1in,bottom=1in}
+
+\begin{document}
+
+\begin{center}
+\textbf{Econ 512}
+
+\emph{Fall 2018}\\[1em]
+
+Homework 3 -- Nonlinear Optimization \\
+Due 10/10/2018
+\\[3em]
+\end{center}
+
+\bigskip
+
+
+In 1969, the popular magazine \textit{Psychology Today }published a
+101-question survey on affairs. Professor Ray Fair (1978) extracted a sample
+of 601 observations on men and women who are currently married for the first
+time and analyzed their responses to a question about extramarital affairs.
+He used the tobit model as his estimation framework for this study. The
+dependent variable is a count of the number of affairs which suggests that a
+standard Poisson model may be a better choice. \ Download the data set
+hw3.mat, and estimate the parameters by the methods of nonlinear least
+squares and maximum likelihood using different algorithms.
+
+Data description:
+
+$y$ - count data: number of affairs in the past year
+
+$\mathbf{x}$ - constant term=1, age, number of years married, religiousness
+(scale $1-5$), occupation (scale $1-7$), self-rating of marriage (scale $1-5$%
+)
+
+\bigskip
+
+The data generating assumptions for the Poisson model, where $j$= number of
+affairs, are:\bigskip
+
+\begin{eqnarray*}
+\Pr \left[ y_{i}=j\right] &=&\frac{e^{-\lambda _{i}}\lambda _{i}^{j}}{j!} \\
+\log \lambda _{i} &=&\mathbf{x}_{i}^{\prime }\mathbf{\beta } \\
+E\left( y_{i}\left\vert x_{i}\right. \right) &=&e^{\mathbf{x}_{i}\prime 
+\mathbf{\beta }}
+\end{eqnarray*}%
+for some $\mathbf{\beta }=\left( \beta _{0},\beta _{1},\beta _{2},\beta
+_{3},\beta _{4},\beta _{5}\right) ^{\prime }.$
+
+\bigskip
+
+The log-likelihood function is:
+
+\begin{eqnarray*}
+\ln L &=&\sum\limits_{i=1}^{n}\ln f\left( y_{i}\left\vert x_{i}\right.
+,\beta \right) \\
+&=&\sum\limits_{i=1}^{n}\ln \frac{e^{-\lambda _{i}}\lambda _{i}^{j}}{j!} \\
+&=&\sum\limits_{i=1}^{n}\left[ -\lambda _{i}+y_{i}\ln \lambda _{i}-\ln j!%
+\right] \\
+&=&\sum\limits_{i=1}^{n}\left[ -e^{\mathbf{x}_{i}\prime \mathbf{\beta }%
+}+y_{i}x_{i}^{\prime }\beta -\ln y_{i}!\right]
+\end{eqnarray*}
+
+The residual sum of squares is:%
+\[
+S\left( \beta \right) =\sum\limits_{i=1}^{n}\left( y_{i}-e^{\beta ^{\prime
+}x_{i}}\right) ^{2} 
+\]
+
+\begin{enumerate}
+\item Estimate the parameter vector $\beta$ using the maximum likelihood estimator computed via  
+the Nelder-Mead simplex method. 
+
+\item Estimate the parameter vector $\beta$ using the maximum likelihood estimator computed via  
+a quasi-Newton optimization method, report which method you choose. 
+
+\item Estimate the parameter vector $\beta$ using nonlinear least squares estimator computed using
+the command {\tt lsqnonlin}. What computation method are you using? 
+
+\item Estimate the parameter vector $\beta$ using the nonlinear least squares estimator computed using 
+the Nelder-Mead simplex method. 
+
+\item Test all four approaches with regard to the choice of initial values.  Roughly rank them in order of 
+robustness and time to convergence. Submit a short writeup summarizing your results.  
+
+\end{enumerate}
+
+
+\end{document}

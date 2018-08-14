@@ -1,0 +1,89 @@
+\documentclass[10pt]{article} 
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\usepackage{geometry} 
+\geometry{verbose,marginparwidth=0.5in,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in} 
+\usepackage{lmodern}
+
+\usepackage{booktabs}
+
+\usepackage{enumitem}
+% \setlist{nosep}
+
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+\usepackage{comment}
+
+\usepackage{mathtools}
+\usepackage{bbm}
+\newcommand{\one}{\mathbbm{1}}
+
+
+
+\begin{document}
+
+
+\begin{center}
+\textbf{Econ 512}
+
+\emph{Fall 2018}\\[1em]
+
+Homework 2 -- Discrete Choice Demand Pricing Equilibrium \\
+Due 9/26/2018
+\\[3em]
+\end{center}
+
+There are two single product firms in a market. There exist a unit mass of consumers. Consumer $i$'s'  utility for product A is
+
+$$u_{iA} = v_A - p_A + \varepsilon_{iA},$$
+and her utility for product B is
+
+$$u_{iB} = v_B - p_B + \varepsilon_{iB},$$
+where $p_A$ and $P_B$ are the prices and $v_A$ and $v_B$ are the qualities of each product.  
+
+Each consumer chooses to consume a single unit of the product that hives her the highest utility, or the outside option with utility $u_{i0} = \varepsilon_{i0}$.
+
+If $\varepsilon\sim$ iid Extreme Value then consumer demand is the following:
+
+\begin{align*}
+D_A &= \frac{exp(q_A - p_A)}{1 + exp(q_A - p_A) + exp(q_B - p_B)} \\
+D_B &= \frac{exp(q_B - p_B)}{1 + exp(q_A - p_A) + exp(q_B - p_B)} \\
+D_0 &= \frac{1}{1 + exp(q_A - p_A) + exp(q_B - p_B)} 
+\end{align*} 
+
+Assume the firms have zero marginal costs and compete by simultaneously setting prices. The equilibrium concept is (Bertrand) Nash. Also, note that 
+
+$$\frac{\partial D_A}{\partial p_A} = -D_A(1-D_A)$$
+
+\vspace{2em}
+
+\noindent
+\textbf{1.} Consider the following parameterization: $v_A=v_B=2$. What is the demand for each option if $p_A=p_B=1$?\\[2em]
+
+\noindent
+\textbf{2.}
+Given the above parameterizations for product values, use Broyden's Method to solve for the Nash pricing equilibrium. (Hint: There is a unique equilibrium.) Report the starting value and convergence criteria (if it converges).\\[2em]
+
+\noindent
+\textbf{3.}
+Now use a Guass-Sidel method (using the secant method for each sub-iteration) to solve for the pricing equilibirum. Which method is faster? Why?\\[2em]
+
+\noindent
+\textbf{3.}
+Lastly, use the following update rule to solve for equilibrium:
+
+\begin{equation}
+	p^{t+1} = \frac{1}{1-D(p^t)}
+\end{equation}
+
+Does this converge? Is it faster or slower than the other two methods?\\[2em]
+
+
+\noindent
+\textbf{5.} Solve the pricing equilibrium (using your preferred method) for $v_A=2$ and $v_B=0:.2:3$. On the same graph, plot equilibrium $p_A$ and $p_B$ as a function of the vector of $v_B$. 
+
+
+
+
+
+\end{document}
