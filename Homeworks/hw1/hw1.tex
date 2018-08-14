@@ -1,0 +1,114 @@
+\documentclass[10pt]{article} 
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\usepackage{geometry} 
+\geometry{verbose,marginparwidth=0.5in,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in} 
+\usepackage{lmodern}
+
+\usepackage{booktabs}
+
+\usepackage{enumitem}
+% \setlist{nosep}
+
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+\usepackage{comment}
+
+\usepackage{mathtools}
+\usepackage{bbm}
+\newcommand{\one}{\mathbbm{1}}
+
+
+
+\begin{document}
+
+
+\begin{center}
+\textbf{Econ 512}
+
+\emph{Fall 2018}\\[1em]
+
+Homework 1 -- Introduction/Review of Matlab Basics\\
+Due 9/5/2018\\[3em]
+\end{center}
+
+\noindent
+Write and execute a matlab program (m-file) that will make and print the following calculations. Turn in your program and file containing theresults. Read about the ``diary'' command for producing your results file. Please carefully comment your files so I can easily read your answers.
+
+\bigskip 
+
+\noindent
+\textbf{1.} Given the following vector of values $X=[1,1.5,3,4,5,7,9,10]$
+construct the values of the functions  
+
+$$Y1=-2+.5X$$ 
+
+and 
+
+$$Y2=-2+.5X^{2}$$ 
+
+and plot $Y1$and $Y2$ against $X$ in a single graph. 
+
+\bigskip 
+
+\noindent
+\textbf{2.} Create a 200x1 vector $X$ containing evenly-spaced numbers between [-10, 20] and calculate the sum of the elements of the vector. 
+
+\bigskip 
+
+\noindent
+\textbf{3.} Given a matrix $A$=$%
+\begin{bmatrix}
+2 & 4 & 6 \\ 
+1 & 7 & 5 \\ 
+3 & 12 & 4%
+\end{bmatrix}%
+$ and vector $b$=$%
+\begin{bmatrix}
+-2 \\ 
+3 \\ 
+10%
+\end{bmatrix}%
+.$  Calculate $C=A^{\prime }b$, \ $D=(A^{\prime }A)^{-1}b,$  $%
+E=\sum_{i}\sum_{j}[a_{ij}b_{i}],$ and $F=$ matrix $A$ with the 2nd row and
+3rd column deleted. \ Solve the system of linear equations $Ax=b$ for the
+vector $x.$
+
+\noindent
+\textbf{4.} Using the matrix $A$ in problem 3, create a 15x15 block diagonal
+matrix $B$ =  $%
+\begin{bmatrix}
+A & 0 & 0 & 0 & 0 \\ 
+0 & A & 0 & 0 & 0 \\ 
+0 & 0 & A & 0 & 0 \\ 
+0 & 0 & 0 & A & 0 \\ 
+0 & 0 & 0 & 0 & A%
+\end{bmatrix}%
+$\ where 0 is a 3x3 matrix of zeros.
+
+\bigskip 
+
+\noindent
+\textbf{5.} Create a 5x3 matrix of random draws from a normal distribution with
+mean= 10 and standard deviation=5. \ \ Call it $A$. \ Convert $A$ to a
+matrix of zeros and ones where the element of the new matrix is 0 if $%
+a_{ij}<10$ and 1 if $a_{ij}\geq 10.$ 
+
+\bigskip 
+
+\noindent
+\textbf{6.}  In the github repository {\tt Homework1} for the class, you will find the file {\tt datahw1.csv} that is a
+comma-delimited spreadsheet file that you will use to answer this question.
+\ The dataset constrains 4392 firm/year observations for Taiwanese
+manufacturing firms. \ The columns of the data matrix are (in order): \ (1)
+firm id, (2) year, (3) dummy variable equal to one if the firm is an
+exporter (Export), (4) dummy variable equal to one if the firm conducts R\&D
+(RD), (5) productivity index (prod), (6) capital stock (cap). \ \ Construct
+the OLS estimator for the
+regression equation: \ 
+
+$$prod_{it}=\beta _{0}+\beta _{1}Export_{it}+\beta _{2}RD_{it}+\beta
+_{3}cap_{it} + \varepsilon _{it}$$
+Report the point estimates and standard errors.
+
+\end{document}
