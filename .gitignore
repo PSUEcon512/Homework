@@ -11,7 +11,9 @@
 *.cb
 *.cb2
 .*.lb
-
+*.lyx
+*.lyx~
+*.DS_Store
 ## Intermediate documents:
 *.dvi
 *.xdv
